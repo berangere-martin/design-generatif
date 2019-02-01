@@ -1,12 +1,13 @@
 let bgColor = {};
 let recColor = {};
-let canvasWidth = 300;
-let canvasHeight = 300;
+let canvasWidth = 400;
+let canvasHeight = 400;
 let startX = canvasWidth * 0.01;
 let startY = canvasHeight * 0.95;
-let rectWidth = 60;
-let rectHeight = -24;
-let rowCount = 5;
+let rectWidth = 50;
+let rectHeight = -50;
+let rowCount = 6;
+let columnCount = 6;
 let seed = 0;
 let colorArray = []
 
@@ -29,14 +30,20 @@ function draw() {
     let currentColor = 0;
     
     for (let i = 0; i < rowCount; i++) {
-        let x = startX;
-        let y = startY + i * rectHeight;
-        while (x <= canvasWidth - rectWidth) {
-                currentColor = Math.round(random(colorArray.length))%colorArray.length;
-                fill(colorArray[currentColor]);
-                rect(x, y, rectWidth, rectHeight)
-                x += rectWidth; 
+        for (let j=0; j < columnCount; j++) {
+
+            // placement des carrés
+            let x = startX + j * rectWidth;
+            let y = startY + i * rectHeight;
+            
+            //sélection de la couleur
+            currentColor = Math.round(random(colorArray.length))%colorArray.length;
+            fill(colorArray[currentColor]);
+            rect(x, y, rectWidth, rectHeight)
+            x += rectWidth; 
+            
         }
+        
         
     }
     
