@@ -9,14 +9,19 @@ let rectHeight = 50;
 let rowCount = 6;
 let columnCount = 6;
 let seed = 0;
-let colorArray = []
+let colorArray = [];
+let webImage;
+
+function preload() {
+    webImage = loadImage("https://i.ibb.co/1RkJ9Zv/cercle.png");
+}
 
 // function attendu par p5.js
 function setup() {
     bgColor = color(150);
     recColor = color(200, 100, 100);
     seed = random(3000);
-    colorArray = [color(201, 26, 9), color(9, 26, 201), color(201, 201, 201)];
+    colorArray = [color(255, 255, 255), color(151, 18, 39), color(208, 109, 28), color(227, 181, 42)];
     createCanvas(canvasWidth, canvasHeight);
     background(bgColor);
     console.log(Math.round(colorArray.length));
@@ -71,5 +76,17 @@ function draw() {
         line(startX + lineStart * rectWidth, startY + rectHeight * k, startX + lineWidth * rectWidth, startY + rectHeight * k);
     }
     
+    image(webImage, 0, 0, webImage.width * 1.67, webImage.height * 1.67);
+    
 }
 
+function keyTyped() {
+    if (key == 'r') {
+        document.location.reload;
+        console.log('r');
+        
+    }
+    if (key == 's') {
+        saveCanvas(`cercle_${year()}`, 'jpg');
+    }
+}
