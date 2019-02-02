@@ -2,10 +2,10 @@ let bgColor = {};
 let recColor = {};
 let canvasWidth = 400;
 let canvasHeight = 400;
-let startX = canvasWidth * 0.01;
-let startY = canvasHeight * 0.95;
+let startX = 0;
+let startY = 0;
 let rectWidth = 50;
-let rectHeight = -50;
+let rectHeight = 50;
 let rowCount = 6;
 let columnCount = 6;
 let seed = 0;
@@ -26,7 +26,7 @@ function setup() {
 function draw() {
     randomSeed(seed);
     background(bgColor);
-    stroke(0);
+    noStroke();
     let currentColor = 0;
     
     for (let i = 0; i < rowCount; i++) {
@@ -45,6 +45,30 @@ function draw() {
         }
         
         
+    }
+
+    // lines settings
+    let nbLine = rowCount;
+    stroke(0);
+    strokeWeight(3);
+    strokeCap(SQUARE);
+
+    // lignes verticales
+    for (var j = 1; j < nbLine; j++) {
+        let lineStart = floor(random(nbLine));
+        let lineHeight = floor(random(lineStart, nbLine));
+        
+        // draw vertical lines
+        line(startX + rectWidth * j, startY + lineStart*rectHeight, startX + rectWidth * j, startY + lineHeight * rectHeight);
+    }
+
+    // lignes horizontales
+    for (let k = 0; k < nbLine; k++) {
+        let lineStart = floor(random(nbLine));
+        let lineWidth = floor(random(lineStart, nbLine));
+        
+        // draw horizontales lines
+        line(startX + lineStart * rectWidth, startY + rectHeight * k, startX + lineWidth * rectWidth, startY + rectHeight * k);
     }
     
 }
