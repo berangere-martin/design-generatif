@@ -10,6 +10,10 @@ let rowCount = 6;
 let columnCount = 6;
 let seed = 0;
 let colorArray = [];
+let colorArrayPalette1 = [];
+let colorArrayPalette2 = [];
+let colorArrayPalette3 = [];
+let colorArrayPalette4 = [];
 let webImage;
 
 function preload() {
@@ -20,11 +24,15 @@ function preload() {
 function setup() {
     bgColor = color(150);
     recColor = color(200, 100, 100);
-    seed = random(3000);
-    colorArray = [color(255, 255, 255), color(151, 18, 39), color(208, 109, 28), color(227, 181, 42)];
+    seed = random(1500);
+    colorArrayPalette1 = [color(177, 14, 35), color(235, 109, 6), color(243, 182, 0), color(177, 14, 35), color(235, 109, 6), color(255, 255, 255)];
+    colorArrayPalette2 = [color(2, 49, 91), color(0, 84, 151), color(94, 154, 62), color(230, 230, 230), color(255, 255, 255)];
+    colorArrayPalette3 = [color(0, 0, 0), color(30, 25, 55), color(112, 17, 45), color(208, 178, 40), color(255, 255, 255)];
+    colorArrayPalette4 = [color(0, 0, 0), color(94, 154, 62), color(106, 109, 104), color(230, 230, 230), color(255, 255, 255)];
+    colorArray = [colorArrayPalette1, colorArrayPalette2, colorArrayPalette3, colorArrayPalette4];
     createCanvas(canvasWidth, canvasHeight);
     background(bgColor);
-    console.log(Math.round(colorArray.length));
+    console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
 }
 
 // function de p5.js permettant de faire une loop (appele 60 fois par seconde)
@@ -32,7 +40,9 @@ function draw() {
     randomSeed(seed);
     background(bgColor);
     noStroke();
-    let currentColor = 0;
+
+    //choix de la palette
+    let currentArray = Math.round(random(colorArray.length))%colorArray.length;
     
     for (let i = 0; i < rowCount; i++) {
         for (let j=0; j < columnCount; j++) {
@@ -42,8 +52,9 @@ function draw() {
             let y = startY + i * rectHeight;
             
             //sélection de la couleur
-            currentColor = Math.round(random(colorArray.length))%colorArray.length;
-            fill(colorArray[currentColor]);
+            let currentPalette = Math.round(random(colorArray[currentArray].length))%colorArray[currentArray].length;
+            let currentColor = colorArray[currentArray][currentPalette];
+            fill(currentColor);
             rect(x, y, rectWidth, rectHeight)
             x += rectWidth; 
             
