@@ -1,8 +1,8 @@
 let bgColor = {};
 let whiteColor = {};
-let whiteApparition = 4;
-let canvasWidth = 400;
-let canvasHeight = 400;
+let whiteApparition = 40; // Sur 100
+let canvasWidth = 300;
+let canvasHeight = 300;
 let startX = 0;
 let startY = 0;
 let rectWidth = 50;
@@ -12,11 +12,13 @@ let columnCount = 6;
 let seed = 0;
 let colorArray = [];
 let webImage;
-let strokeW = 3;
+let strokeW = 2;
+let cercleR = 5;
 
 // Function pour precharger l'image
 function preload() {
     webImage = loadImage("https://i.ibb.co/1RkJ9Zv/cercle.png");
+
 }
 
 // function attendu par p5.js
@@ -29,20 +31,20 @@ function setup() {
     let colorArrayPalette3 = [color(0, 0, 0), color(30, 25, 55), color(112, 17, 45), color(208, 178, 40)];
     let colorArrayPalette4 = [color(0, 0, 0), color(94, 154, 62), color(106, 109, 104), color(230, 230, 230)];
     colorArray = [colorArrayPalette1, colorArrayPalette2, colorArrayPalette3, colorArrayPalette4];
-    
-    for (let i = 0; i < colorArray.length; i++) {
-        for (let j = 0; j < whiteApparition; j++) {
-            colorArray[i].push(whiteColor);            
-        }
-    }
 
     createCanvas(canvasWidth, canvasHeight);
     background(bgColor);
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
+    drawTEST() 
 }
 
 // function de p5.js permettant de faire une loop (appele 60 fois par seconde)
-function draw() {
+// function draw() {
+    
+    
+// }
+
+function drawTEST() {
     randomSeed(seed);
     background(bgColor);
     noStroke();
@@ -51,22 +53,53 @@ function draw() {
     let currentArray = Math.round(random(colorArray.length))%colorArray.length;
     
     for (let i = 0; i < rowCount; i++) {
-        for (let j=0; j < columnCount; j++) {
+        let y = startY + i * rectHeight;
 
+        for (let j=0; j < columnCount; j++) {
             // placement des carrés
             let x = startX + j * rectWidth;
-            let y = startY + i * rectHeight;
             
             //sélection de la couleur
             let currentPalette = Math.round(random(colorArray[currentArray].length))%colorArray[currentArray].length;
             let currentColor = colorArray[currentArray][currentPalette];
-            fill(currentColor);
-            rect(x, y, rectWidth, rectHeight)
+            let allowWhite = Math.round(random(100));
+
+            if (allowWhite <= whiteApparition) {
+                fill(whiteColor);
+                rect(x, y, rectWidth, rectHeight);
+            } else {
+                fill(currentColor);
+                rect(x, y, rectWidth, rectHeight);
+
+                
+                // print cercle
+                let printCercle = Math.round(random(4));
+                fill(whiteColor);
+                console.log(i + "-" + j);
+                
+                if (printCercle === 1) {
+                    console.log("top");
+                    ellipse(x + rectWidth*0.5, y + 2*cercleR, cercleR, cercleR); // top
+                }
+                else if (printCercle === 2) {
+                    console.log("bot");
+                    // ellipse(x - rectWidth*0.5, y + rectHeight - 2*cercleR, cercleR, cercleR); // bot -- BUG
+                }
+                else if (printCercle === 3) {
+                    console.log("left");
+                    ellipse(x + cercleR*2, y + 0.5*rectWidth, cercleR, cercleR); // left
+                }
+                else if (printCercle === 4) {
+                    console.log("right");
+                    ellipse(x + rectWidth - cercleR*2, y + 0.5*rectWidth, cercleR, cercleR); // right
+                }
+                
+            }
+
             x += rectWidth; 
             
         }
-        
-        
+ 
     }
 
     // lines settings
@@ -92,9 +125,8 @@ function draw() {
         // draw horizontales lines
         line(startX + lineStart * rectWidth, startY + rectHeight * k, startX + lineWidth * rectWidth, startY + rectHeight * k);
     }
-    
+
     image(webImage, 0, 0, webImage.width * 1.67, webImage.height * 1.67);
-    
 }
 
 function keyTyped() {
