@@ -1,5 +1,6 @@
 let bgColor = {};
-let recColor = {};
+let whiteColor = {};
+let whiteApparition = 4;
 let canvasWidth = 400;
 let canvasHeight = 400;
 let startX = 0;
@@ -10,12 +11,10 @@ let rowCount = 6;
 let columnCount = 6;
 let seed = 0;
 let colorArray = [];
-let colorArrayPalette1 = [];
-let colorArrayPalette2 = [];
-let colorArrayPalette3 = [];
-let colorArrayPalette4 = [];
 let webImage;
+let strokeW = 3;
 
+// Function pour precharger l'image
 function preload() {
     webImage = loadImage("https://i.ibb.co/1RkJ9Zv/cercle.png");
 }
@@ -23,13 +22,20 @@ function preload() {
 // function attendu par p5.js
 function setup() {
     bgColor = color(150);
-    recColor = color(200, 100, 100);
     seed = random(1500);
-    colorArrayPalette1 = [color(177, 14, 35), color(235, 109, 6), color(243, 182, 0), color(177, 14, 35), color(235, 109, 6), color(255, 255, 255)];
-    colorArrayPalette2 = [color(2, 49, 91), color(0, 84, 151), color(94, 154, 62), color(230, 230, 230), color(255, 255, 255)];
-    colorArrayPalette3 = [color(0, 0, 0), color(30, 25, 55), color(112, 17, 45), color(208, 178, 40), color(255, 255, 255)];
-    colorArrayPalette4 = [color(0, 0, 0), color(94, 154, 62), color(106, 109, 104), color(230, 230, 230), color(255, 255, 255)];
+    whiteColor = color(255, 255, 255);
+    let colorArrayPalette1 = [color(177, 14, 35), color(235, 109, 6), color(243, 182, 0), color(177, 14, 35), color(235, 109, 6)];
+    let colorArrayPalette2 = [color(2, 49, 91), color(0, 84, 151), color(94, 154, 62), color(230, 230, 230)];
+    let colorArrayPalette3 = [color(0, 0, 0), color(30, 25, 55), color(112, 17, 45), color(208, 178, 40)];
+    let colorArrayPalette4 = [color(0, 0, 0), color(94, 154, 62), color(106, 109, 104), color(230, 230, 230)];
     colorArray = [colorArrayPalette1, colorArrayPalette2, colorArrayPalette3, colorArrayPalette4];
+    
+    for (let i = 0; i < colorArray.length; i++) {
+        for (let j = 0; j < whiteApparition; j++) {
+            colorArray[i].push(whiteColor);            
+        }
+    }
+
     createCanvas(canvasWidth, canvasHeight);
     background(bgColor);
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
@@ -66,7 +72,7 @@ function draw() {
     // lines settings
     let nbLine = rowCount;
     stroke(0);
-    strokeWeight(3);
+    strokeWeight(strokeW);
     strokeCap(SQUARE);
 
     // lignes verticales
@@ -79,7 +85,7 @@ function draw() {
     }
 
     // lignes horizontales
-    for (let k = 0; k < nbLine; k++) {
+    for (let k = 1; k < nbLine; k++) {
         let lineStart = floor(random(nbLine));
         let lineWidth = floor(random(lineStart, nbLine));
         
