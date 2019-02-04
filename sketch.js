@@ -35,16 +35,10 @@ function setup() {
     createCanvas(canvasWidth, canvasHeight);
     background(bgColor);
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
-    drawTEST() 
 }
 
 // function de p5.js permettant de faire une loop (appele 60 fois par seconde)
-// function draw() {
-    
-    
-// }
-
-function drawTEST() {
+function draw() {
     randomSeed(seed);
     background(bgColor);
     noStroke();
@@ -75,22 +69,17 @@ function drawTEST() {
                 // print cercle
                 let printCercle = Math.round(random(4));
                 fill(whiteColor);
-                console.log(i + "-" + j);
                 
                 if (printCercle === 1) {
-                    console.log("top");
                     ellipse(x + rectWidth*0.5, y + 2*cercleR, cercleR, cercleR); // top
                 }
                 else if (printCercle === 2) {
-                    console.log("bot");
                     // ellipse(x - rectWidth*0.5, y + rectHeight - 2*cercleR, cercleR, cercleR); // bot -- BUG
                 }
                 else if (printCercle === 3) {
-                    console.log("left");
                     ellipse(x + cercleR*2, y + 0.5*rectWidth, cercleR, cercleR); // left
                 }
                 else if (printCercle === 4) {
-                    console.log("right");
                     ellipse(x + rectWidth - cercleR*2, y + 0.5*rectWidth, cercleR, cercleR); // right
                 }
                 
@@ -127,6 +116,7 @@ function drawTEST() {
     }
 
     image(webImage, 0, 0, webImage.width * 1.67, webImage.height * 1.67);
+    
 }
 
 function keyTyped() {
