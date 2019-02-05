@@ -4,9 +4,31 @@
     <meta charset="utf-8">
     <title>Design génératif</title>
     <script src="assets/js/p5.min.js"></script>
-    <script src="sketch.js"></script>
     <style>body {padding: 0; margin: 0; background-color: #333333; height:100vh;} #defaultCanvas0 {margin: 0 auto; position:relative; top: 30px; display: block !important;}</style>
 </head>
 <body>
+    <script src="sketch.js"></script>
+    <script src="assets/js/dat.min.js"></script>
+
+    <script>
+        var FizzyText = function() {
+        this.timeStamp = 1749363225;
+        };
+
+        window.onload = function() {
+        var text = new FizzyText();
+        var gui = new dat.GUI();
+        var timeStampController = gui.add(text, 'timeStamp', 1549363225, 2049363225);
+
+            timeStampController.onChange(function(value) {
+                timeStamp = Math.round(value);
+                setcolorSeed();
+                sethandleSeed();
+                setstickSeed();
+                setPalletteColor();
+            });
+        };
+    </script>
+
 </body>
 </html>
