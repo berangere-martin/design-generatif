@@ -1,3 +1,4 @@
+let timeStamp = 5345345235;
 let bgColor = {};
 let whiteColor = {};
 let whiteApparition = 40; // Sur 100
@@ -12,7 +13,7 @@ let columnCount = 6;
 let seed = 0;
 let colorArray = [];
 let webImage;
-let strokeW = 2;
+let strokeW = 3;
 let cercleR = 5;
 
 let colorSeed = 0;
@@ -26,37 +27,57 @@ function preload() {
 }
 
 function setPalletteColor() {
-    randomSeed(new Date().valueOf());
+    randomSeed(timeStamp);
     currentArray = Math.round(random(colorArray.length))%colorArray.length;
 }
 
 function setcolorSeed() {
-    randomSeed(new Date().valueOf());
+    randomSeed(timeStamp);
     colorSeed = random(3000)
 }
 
 function setstickSeed() {
-    randomSeed(new Date().valueOf());
+    randomSeed(timeStamp);
     stickSeed = random(3000)
 }
 
 function sethandleSeed() {
-    randomSeed(new Date().valueOf());
+    randomSeed(timeStamp);
     handleSeed = random(3000)
+}
+
+function initialisePaletteColor() {
+    // Set all palette color
+    colorArray = [
+        [color(2.0, 49.0, 91.0), color(243.0, 182.0, 0.0), color(235.0, 109.0, 6.0)],
+        [color(2.0, 49.0, 91.0), color(243.0, 182.0, 0.0), color(177.0, 14.0, 35.0)],
+        [color(2.0, 49.0, 91.0), color(243.0, 182.0, 0.0), color(177.0, 14.0, 35.0)],
+        [color(2.0, 49.0, 91.0), color(243.0, 182.0, 0.0), color(83.0, 46.0, 30.0)],
+        [color(0.0, 84.0, 151.0), color(2.0, 49.0, 91.0), color(243.0, 182.0, 0.0)],
+        [color(0.0, 84.0, 151.0), color(2.0, 49.0, 91.0), color(235.0, 109.0, 6.0)],
+        [color(0.0, 84.0, 151.0), color(2.0, 49.0, 91.0), color(185.0, 197.0, 202.0)],
+        [color(177.0, 14.0, 35.0), color(235.0, 109.0, 6.0), color(211.0, 215.0, 209.0)],
+        [color(235.0, 109.0, 6.0), color(243.0, 182.0, 0.0), color(211.0, 215.0, 209.0)],
+        [color(177.0, 14.0, 35.0), color(243.0, 182.0, 0.0), color(211.0, 215.0, 209.0)],
+        [color(15.0, 156.0, 45.0), color(243.0, 182.0, 0.0), color(177.0, 14.0, 35.0)],
+        [color(15.0, 156.0, 45.0), color(2.0, 49.0, 91.0), color(243.0, 182.0, 0.0)],
+        [color(15.0, 156.0, 45.0), color(190.0, 160.0, 120.0), color(243.0, 182.0, 0.0)],
+        [color(177.0, 14.0, 35.0), color(235.0, 109.0, 6.0), color(243.0, 182.0, 0.0), color(2.0, 49.0, 91.0)],
+        [color(177.0, 14.0, 35.0), color(235.0, 109.0, 6.0), color(243.0, 182.0, 0.0), color(190.0, 160.0, 120.0)],
+        [color(177.0, 14.0, 35.0), color(235.0, 109.0, 6.0), color(243.0, 182.0, 0.0), color(211.0, 215.0, 209.0)],
+    ];
 }
 
 // function attendu par p5.js
 function setup() {
     bgColor = color(200);
     whiteColor = color(255, 255, 255);
+
     setcolorSeed();
     sethandleSeed();
     setstickSeed();
-    let colorArrayPalette1 = [color(177, 14, 35), color(235, 109, 6), color(243, 182, 0), color(177, 14, 35), color(235, 109, 6)];
-    let colorArrayPalette2 = [color(2, 49, 91), color(0, 84, 151), color(94, 154, 62), color(230, 230, 230)];
-    let colorArrayPalette3 = [color(0, 0, 0), color(30, 25, 55), color(112, 17, 45), color(208, 178, 40)];
-    let colorArrayPalette4 = [color(0, 0, 0), color(94, 154, 62), color(106, 109, 104), color(230, 230, 230)];
-    colorArray = [colorArrayPalette1, colorArrayPalette2, colorArrayPalette3, colorArrayPalette4];
+
+    initialisePaletteColor();
     
     setPalletteColor();
 
@@ -163,19 +184,10 @@ function drawLine() {
 
 function keyTyped() {
     if (key == 'r') {
-        document.location.reload;
-        console.log('r');
-    }
-    if (key == 'a') {
+        timeStamp.value = new Date().valueOf();
         setPalletteColor();
-    }
-    if (key == 'b') {
         setstickSeed();
-    }
-    if (key == 'c') {
         setcolorSeed();
-    }
-    if (key == 'd') {
         sethandleSeed();
     }
     if (key == 's') {
