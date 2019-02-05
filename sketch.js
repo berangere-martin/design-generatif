@@ -1,8 +1,8 @@
 let bgColor = {};
 let whiteColor = {};
 let whiteApparition = 40; // Sur 100
-let canvasWidth = 596;
-let canvasHeight = 842;
+let canvasWidth = 300;
+let canvasHeight = 300;
 let startX = 0;
 let startY = 0;
 let rectWidth = 50;
@@ -47,7 +47,7 @@ function sethandleSeed() {
 
 // function attendu par p5.js
 function setup() {
-    bgColor = color(150);
+    bgColor = color(200);
     whiteColor = color(255, 255, 255);
     setcolorSeed();
     sethandleSeed();
@@ -60,8 +60,11 @@ function setup() {
     
     setPalletteColor();
 
-    createCanvas(canvasWidth, canvasHeight);
+    let canvas = createCanvas(canvasWidth, canvasHeight);
+
+    canvas.parent('sketch-holder');
     background(bgColor);
+    
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
 }
 
