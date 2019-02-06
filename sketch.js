@@ -1,4 +1,4 @@
-let timeStamp = 5345345235;
+let timeStamp = new Date().valueOf();
 let bgColor = {};
 let whiteColor = {};
 let whiteApparition = 40; // Sur 100
@@ -13,7 +13,7 @@ let columnCount = 6;
 let seed = 0;
 let colorArray = [];
 let webImage;
-let strokeW = 3;
+let strokeW = 4;
 let cercleR = 5;
 
 let colorSeed = 0;
@@ -21,9 +21,13 @@ let handleSeed = 0;
 let stickSeed = 0;
 let currentArray;
 
+let logo;
+let currentAffiche = 1;
+
 // Function pour precharger l'image
 function preload() {
     webImage = loadImage("https://i.ibb.co/1RkJ9Zv/cercle.png");
+    logo = loadImage("https://i.imgsafe.org/9c/9cf8ba5df4.png");
 }
 
 function setPalletteColor() {
@@ -82,31 +86,95 @@ function setup() {
     setPalletteColor();
 
     createCanvas(canvasWidth, canvasHeight);
-    background(bgColor);
+    background(whiteColor);
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
 }
 
 // function de p5.js permettant de faire une loop (appele 60 fois par seconde)
 function draw() {
-    background(bgColor);
-    noStroke();
+    angleMode(DEGREES);
 
-    drawSquare();
-    drawHandle();
-    drawLine();
+    background(whiteColor);
 
-    image(webImage, 0, 0, webImage.width * 1.67, webImage.height * 1.67);
+    switch (currentAffiche) {
+        case 1:
+            drawAffiche1()
+            break;
+    
+        case 2:
+            drawAffiche2()
+            break;
+    }
+    drawAffiche2();
 }
 
-function drawSquare() {
+function drawAffiche2() {
+    image(logo, 515, 150);
+}
+
+function drawAffiche1() {
+    for (let i = 0; i < 4; i++) {
+        let y = 400 + 320 * i;
+        drawLogo(65, y, 0.57, i);
+        drawLogo(385, y, 0.57, i);
+        drawLogo(705, y, 0.57, i);
+    }
+
+    let currentDate = new Date(timeStamp * 1000);
+    let dateUsual = currentDate.getDay() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear() + " " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+    let timeStampLength = width-toString(timeStamp).length-20;
+    // console.log(toString(timeStamp).length + 20);    
+    
+    drawLogo(4800, 1500, 0.1, 0);
+
+    stroke(0);
+    strokeWeight(5)
+    line(20, 200, width-20, 200);
+
+    noStroke();
+    textSize(105);
+    text('USM', 20, 180);
+
+    textSize(20);
+    text('Durability', 250, 140);
+    text('Modularity', 250, 160);
+    text('Swiss Quality', 250, 180);
+
+    textSize(10);
+    text(dateUsual, 20, 20);
+    text(timeStamp, width - 90, 20);
+
+    image(logo, 515, 150);
+}
+
+function drawLogo (start_X, start_Y, size, rotated) {
+    push(); // Start a new drawing state
+    noStroke();
+    
+    // Mirror effect
+    if (rotated % 2 == 1) {
+        translate(width/2, height/2);
+        rotate(180);
+        translate(-width*0.5182, -height*1.113);
+    }
+    scale(size);
+    drawSquare(start_X, start_Y);
+    drawHandle(start_X, start_Y);
+    drawLine(start_X, start_Y);
+
+    image(webImage, start_X-1, start_Y-1, webImage.width * 1.675, webImage.height * 1.675);
+    pop(); // Restore original state
+}
+
+function drawSquare(start_X, start_Y) {
     randomSeed(colorSeed);
     //choix de la palette
 
     for (let i = 0; i < rowCount; i++) {
         for (let j=0; j < columnCount; j++) {
             // placement des carrés
-            let x = startX + j * rectWidth;
-            let y = startY + i * rectHeight;
+            let x = start_X + j * rectWidth;
+            let y = start_Y + i * rectHeight;
 
             //sélection de la couleur
             let currentPalette = Math.round(random(colorArray[currentArray].length))%colorArray[currentArray].length;
@@ -126,13 +194,13 @@ function drawSquare() {
     }
 }
 
-function drawHandle() {
+function drawHandle(start_X, start_Y) {
     randomSeed(handleSeed);
     for (let i = 0; i < rowCount; i++) {
-        let y = startY + i * rectHeight;
-
         for (let j=0; j < columnCount; j++) {
-            let x = startX + j * rectWidth;
+            let x = start_X + j * rectWidth;
+            let y = start_Y + i * rectHeight;
+
             // Draw handle
             let printCercle = Math.round(random(4));
             fill(whiteColor);
@@ -153,7 +221,7 @@ function drawHandle() {
     }
 }
 
-function drawLine() {
+function drawLine(start_X, start_Y) {
     let nbLine = rowCount;
     stroke(0);
     strokeWeight(strokeW);
@@ -166,7 +234,7 @@ function drawLine() {
         let lineHeight = floor(random(lineStart, nbLine));
         
         // draw vertical lines
-        line(startX + rectWidth * j, startY + lineStart*rectHeight, startX + rectWidth * j, startY + lineHeight * rectHeight);
+        line(start_X + rectWidth * j, start_Y + lineStart*rectHeight, start_X + rectWidth * j, start_Y + lineHeight * rectHeight);
     }
 
     // lignes horizontales
@@ -175,7 +243,7 @@ function drawLine() {
         let lineWidth = floor(random(lineStart, nbLine));
         
         // draw horizontales lines
-        line(startX + lineStart * rectWidth, startY + rectHeight * k, startX + lineWidth * rectWidth, startY + rectHeight * k);
+        line(start_X + lineStart * rectWidth, start_Y + rectHeight * k, start_X + lineWidth * rectWidth, start_Y + rectHeight * k);
     }
 }
 
