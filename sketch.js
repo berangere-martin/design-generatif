@@ -86,8 +86,13 @@ function setup() {
     setPalletteColor();
 
     let canvas = createCanvas(canvasWidth, canvasHeight);
-
     canvas.parent('sketch-holder');
+
+    let buttonShowPosters = document.querySelectorAll(".showPosters");
+
+    console.log(buttonShowPosters);
+    
+    
     background(bgColor);
 
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
@@ -112,6 +117,7 @@ function draw() {
             drawAffiche2()
             break;
     }
+
 }
 
 function drawAffiche1() {
@@ -265,3 +271,4 @@ function keyTyped() {
         saveCanvas(`cercle_${year()}`, 'jpg');
     }
 }
+
