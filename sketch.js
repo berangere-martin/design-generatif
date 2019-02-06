@@ -2,8 +2,8 @@ let timeStamp = new Date().valueOf();
 let bgColor = {};
 let whiteColor = {};
 let whiteApparition = 40; // Sur 100
-let canvasWidth = 596;
-let canvasHeight = 842;
+let canvasWidth = 596; // 300+296
+let canvasHeight = 842; //300+542
 let startX = 0;
 let startY = 0;
 let rectWidth = 50;
@@ -22,7 +22,11 @@ let stickSeed = 0;
 let currentArray;
 
 let logo;
-let currentAffiche = 3;
+let currentAffiche = 1;
+
+let buttonShowPosters;
+let steps;
+let sketchHolder;
 
 // Function pour precharger l'image
 function preload() {
@@ -88,10 +92,11 @@ function setup() {
     let canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent('sketch-holder');
 
-    let buttonShowPosters = document.querySelectorAll(".showPosters");
+    buttonShowPosters = document.querySelector('.showPosters');
+    steps = document.querySelector('#steps');
+    sketchHolder = document.querySelector('#sketch-holder');
 
-    console.log(buttonShowPosters);
-    
+    showPosters();
     
     background(bgColor);
 
@@ -109,10 +114,6 @@ function draw() {
             drawAffiche1();
             break;
     
-        case 2:
-            drawAffiche2();
-            break;
-        
         case 2:
             drawAffiche2();
             break;
@@ -301,3 +302,13 @@ function keyTyped() {
     }
 }
 
+function showPosters(){
+    buttonShowPosters.addEventListener('click', function(){
+        steps.children[0].classList.remove('active');
+        steps.children[0].classList.add('past');
+        steps.children[1].classList.add('active');
+        currentAffiche = 2;
+        sketchHolder.classList.add('shadow');
+        buttonShowPosters.style.display = "none";
+    });
+}
