@@ -26,8 +26,8 @@ let currentAffiche = 3;
 
 // Function pour precharger l'image
 function preload() {
-    webImage = loadImage("https://i.ibb.co/1RkJ9Zv/cercle.png");
-    logo = loadImage("https://i.imgsafe.org/9c/9cf8ba5df4.png");
+    webImage = loadImage("http://i.rlws.fr/mask.png");
+    logo = loadImage("http://i.rlws.fr/usm.png");
 }
 
 function setPalletteColor() {
