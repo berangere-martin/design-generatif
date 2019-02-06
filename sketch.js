@@ -107,15 +107,18 @@ function draw() {
         case 2:
             drawAffiche2()
             break;
+        
+        case 2:
+            drawAffiche2()
+            break;
     }
-    drawAffiche2();
-}
-
-function drawAffiche2() {
-    image(logo, 515, 150);
 }
 
 function drawAffiche1() {
+    drawLogo(width/2-150, height/2-150, 1, 0);
+}
+
+function drawAffiche2() {
     for (let i = 0; i < 4; i++) {
         let y = 400 + 320 * i;
         drawLogo(65, y, 0.57, i);
