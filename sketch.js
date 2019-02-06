@@ -85,8 +85,11 @@ function setup() {
     
     setPalletteColor();
 
-    createCanvas(canvasWidth, canvasHeight);
-    background(whiteColor);
+    let canvas = createCanvas(canvasWidth, canvasHeight);
+
+    canvas.parent('sketch-holder');
+    background(bgColor);
+
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
 }
 
