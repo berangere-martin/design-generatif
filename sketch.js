@@ -22,7 +22,7 @@ let stickSeed = 0;
 let currentArray;
 
 let logo;
-let currentAffiche = 1;
+let currentAffiche = 3;
 
 // Function pour precharger l'image
 function preload() {
@@ -101,21 +101,50 @@ function draw() {
 
     switch (currentAffiche) {
         case 1:
-            drawAffiche1()
+            drawAffiche1();
             break;
     
         case 2:
-            drawAffiche2()
+            drawAffiche2();
             break;
         
         case 2:
-            drawAffiche2()
+            drawAffiche2();
+            break;
+
+        case 3:
+            drawAffiche3();
             break;
     }
 }
 
 function drawAffiche1() {
-    drawLogo(width/2-150, height/2-150, 1, 0);
+    drawLogo(width/2-150, height/2-150, 1, 0, true);
+}
+
+function drawAffiche3() {
+    drawLogo(70, 300, 3, 1, false, 50);
+    drawLogo(70, -20, 3, 1, false, 50);
+
+    drawLogo(4800, 100, 0.1, 0);
+    image(logo, 515, 10);
+
+    push()
+
+    translate(width*0.5, height*0.5);
+    rotate(-41);
+    translate(-width*0.3, -height*0.35);
+
+    noStroke();
+    textSize(150);
+    text('USM', 0, 160);
+
+    textSize(20);
+    text('Durability', 330, 120);
+    text('Modularity', 330, 140);
+    text('Swiss Quality', 330, 160);
+
+    pop();
 }
 
 function drawAffiche2() {
@@ -129,7 +158,6 @@ function drawAffiche2() {
     let currentDate = new Date(timeStamp * 1000);
     let dateUsual = currentDate.getDay() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear() + " " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
     let timeStampLength = width-toString(timeStamp).length-20;
-    // console.log(toString(timeStamp).length + 20);    
     
     drawLogo(4800, 1500, 0.1, 0);
 
@@ -153,14 +181,14 @@ function drawAffiche2() {
     image(logo, 515, 150);
 }
 
-function drawLogo (start_X, start_Y, size, rotated) {
+function drawLogo (start_X, start_Y, size, rotated, isCercle=true, rotatedTo=180) {
     push(); // Start a new drawing state
     noStroke();
     
     // Mirror effect
     if (rotated % 2 == 1) {
-        translate(width/2, height/2);
-        rotate(180);
+        translate(width*0.5, height*0.5);
+        rotate(rotatedTo);
         translate(-width*0.5182, -height*1.113);
     }
     scale(size);
@@ -168,7 +196,8 @@ function drawLogo (start_X, start_Y, size, rotated) {
     drawHandle(start_X, start_Y);
     drawLine(start_X, start_Y);
 
-    image(webImage, start_X-1, start_Y-1, webImage.width * 1.675, webImage.height * 1.675);
+    if (isCercle) image(webImage, start_X-1, start_Y-1, webImage.width * 1.675, webImage.height * 1.675);
+    // alert(isCercle)
     pop(); // Restore original state
 }
 
