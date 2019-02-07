@@ -37,8 +37,10 @@ let getMyPoster = document.querySelector('.getMyPoster');
 
 // Function pour precharger l'image
 function preload() {
-    webImage = loadImage("http://i.rlws.fr/mask.png");
-    logo = loadImage("http://i.rlws.fr/usm.png");
+    // webImage = loadImage("http://i.rlws.fr/mask.png");
+    // logo = loadImage("http://i.rlws.fr/usm.png");
+    webImage = loadImage("./assets/image/mask.png");
+    logo = loadImage("./assets/image/usm_logo.png");
 }
 
 function setPalletteColor() {
