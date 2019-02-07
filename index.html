@@ -17,6 +17,16 @@
         <div id="sketch-holder" class="scale"></div>
         <a href="#" class="showPosters">Créer mon affiche</a>
     </section>
+
+    <div class="selectPoster">
+        <a href="#" class="selectPoster_1 active">Poster 1</a><br>
+        <a href="#" class="selectPoster_2">Poster 2</a><br>
+        <a href="#" class="selectPoster_validate">Valider mon choix</a>
+    </div>
+
+    <div class="getPoster">
+        <a href="#" class="getMyPoster">Telecharger mon poster</a>
+    </div>
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="style.css" rel="stylesheet" /> 
@@ -25,30 +35,30 @@
     <script src="assets/js/dat.min.js"></script>
 
     <script>
-        var FizzyText = function() {
-        this.timeStamp = new Date().valueOf();
-        this.currentAffiche = 1;
-        };
+        // var FizzyText = function() {
+        // this.timeStamp = new Date().valueOf();
+        // this.currentAffiche = 1;
+        // };
 
-        window.onload = function() {
-        var text = new FizzyText();
-        var gui = new dat.GUI();
+        // window.onload = function() {
+        // var text = new FizzyText();
+        // var gui = new dat.GUI();
 
-        var afficheController = gui.add(text, 'currentAffiche', 1, 3);
-        afficheController.onChange(function(value) {
-            currentAffiche = Math.round(value);;
-        });
+        // var afficheController = gui.add(text, 'currentAffiche', 1, 3);
+        // afficheController.onChange(function(value) {
+        //     currentAffiche = Math.round(value);;
+        // });
             
-        var timeStampController = gui.add(text, 'timeStamp', 1549363225, 2049363225);
+        // var timeStampController = gui.add(text, 'timeStamp', 1549363225, 2049363225);
 
-            timeStampController.onChange(function(value) {
-                timeStamp = Math.round(value);
-                setcolorSeed();
-                sethandleSeed();
-                setstickSeed();
-                setPalletteColor();
-            });
-        };
+        //     timeStampController.onChange(function(value) {
+        //         timeStamp = Math.round(value);
+        //         setcolorSeed();
+        //         sethandleSeed();
+        //         setstickSeed();
+        //         setPalletteColor();
+        //     });
+        // };
     </script>
 
 </body>

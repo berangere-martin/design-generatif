@@ -24,9 +24,16 @@ let currentArray;
 let logo;
 let currentAffiche = 1;
 
-let buttonShowPosters;
-let steps;
-let sketchHolder;
+// Select DOM elements
+let buttonShowPosters = document.querySelector('.showPosters');
+let steps = document.querySelector('#steps');
+let sketchHolder = document.querySelector('#sketch-holder');
+let selectPoster = document.querySelector('.selectPoster');
+let selectPoster_1 = document.querySelector('.selectPoster_1');
+let selectPoster_2 = document.querySelector('.selectPoster_2');  
+let selectPoster_validate = document.querySelector('.selectPoster_validate');  
+let getPoster = document.querySelector('.getPoster');  
+let getMyPoster = document.querySelector('.getMyPoster');  
 
 // Function pour precharger l'image
 function preload() {
@@ -90,13 +97,7 @@ function setup() {
     setPalletteColor();
 
     let canvas = createCanvas(canvasWidth, canvasHeight);
-    canvas.parent('sketch-holder');
-
-    buttonShowPosters = document.querySelector('.showPosters');
-    steps = document.querySelector('#steps');
-    sketchHolder = document.querySelector('#sketch-holder');
-
-    showPosters();
+    canvas.parent('sketch-holder');  
     
     background(bgColor);
 
@@ -291,7 +292,7 @@ function drawLine(start_X, start_Y) {
 
 function keyTyped() {
     if (key == 'r') {
-        timeStamp.value = new Date().valueOf();
+        timeStamp = new Date().valueOf();
         setPalletteColor();
         setstickSeed();
         setcolorSeed();
@@ -302,13 +303,40 @@ function keyTyped() {
     }
 }
 
-function showPosters(){
-    buttonShowPosters.addEventListener('click', function(){
-        steps.children[0].classList.remove('active');
-        steps.children[0].classList.add('past');
-        steps.children[1].classList.add('active');
-        currentAffiche = 2;
-        sketchHolder.classList.add('shadow');
-        buttonShowPosters.style.display = "none";
-    });
-}
+buttonShowPosters.addEventListener('click', function(e){
+    e.preventDefault();
+    steps.children[0].classList.remove('active');
+    steps.children[0].classList.add('past');
+    steps.children[1].classList.add('active');
+    currentAffiche = 2;
+    sketchHolder.classList.add('shadow');
+    selectPoster.classList.add('active');
+    buttonShowPosters.style.display = "none";
+});
+
+selectPoster_1.addEventListener('click', function (e) {
+    e.preventDefault();
+    currentAffiche = 2;
+    selectPoster_1.classList.toggle('active');
+    selectPoster_2.classList.toggle('active');
+});
+
+selectPoster_2.addEventListener('click', function (e) {
+    e.preventDefault();
+    currentAffiche = 3;
+    selectPoster_1.classList.toggle('active');
+    selectPoster_2.classList.toggle('active');
+});
+
+selectPoster_validate.addEventListener('click', function (e) {
+    e.preventDefault();
+    steps.children[1].classList.remove('active');
+    steps.children[1].classList.add('past');
+    steps.children[2].classList.add('active');
+    selectPoster.classList.remove('active');
+    getPoster.classList.add('active');
+});
+
+getMyPoster.addEventListener('click', function (e) {
+    saveCanvas('USM_'+timeStamp, 'jpg');
+})
