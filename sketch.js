@@ -129,31 +129,6 @@ function drawAffiche1() {
     drawLogo(width/2-150, height/2-150, 1, 0, true);
 }
 
-function drawAffiche3() {
-    drawLogo(70, 300, 3, 1, false, 50);
-    drawLogo(70, -20, 3, 1, false, 50);
-
-    drawLogo(4800, 100, 0.1, 0);
-    image(logo, 515, 10);
-
-    push()
-
-    translate(width*0.5, height*0.5);
-    rotate(-41);
-    translate(-width*0.3, -height*0.35);
-
-    noStroke();
-    textSize(150);
-    text('USM', 0, 160);
-
-    textSize(20);
-    text('Durability', 330, 120);
-    text('Modularity', 330, 140);
-    text('Swiss Quality', 330, 160);
-
-    pop();
-}
-
 function drawAffiche2() {
     for (let i = 0; i < 4; i++) {
         let y = 400 + 320 * i;
@@ -186,6 +161,31 @@ function drawAffiche2() {
     text(timeStamp, width - 90, 20);
 
     image(logo, 515, 150);
+}
+
+function drawAffiche3() {
+    drawLogo(70, 300, 3, 1, false, 50);
+    drawLogo(70, -20, 3, 1, false, 50);
+
+    drawLogo(4800, 100, 0.1, 0);
+    image(logo, 515, 10);
+
+    push()
+
+    translate(width*0.5, height*0.5);
+    rotate(-41);
+    translate(-width*0.3, -height*0.35);
+
+    noStroke();
+    textSize(150);
+    text('USM', 0, 160);
+
+    textSize(20);
+    text('Durability', 330, 120);
+    text('Modularity', 330, 140);
+    text('Swiss Quality', 330, 160);
+
+    pop();
 }
 
 function drawLogo (start_X, start_Y, size, rotated, isCercle=true, rotatedTo=180) {

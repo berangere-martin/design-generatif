@@ -78,6 +78,10 @@ h1 {
 }
 
 #sketch-holder{
-    width: 300px !important;
-    height: 300px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.5);
+    box-shadow: 0px 0px 10px #000;
 }
