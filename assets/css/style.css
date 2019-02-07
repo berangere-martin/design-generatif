@@ -1,0 +1,90 @@
+body{
+    font-family: 'Helvetica', sans-serif;
+    color: rgb(36, 36, 36);
+    background: white; 
+    overflow: hidden;
+}
+
+/*
+    steps
+*/
+#steps {
+    color: #444;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid #444;
+}
+
+#steps p {
+    margin: 10px 10px;
+}
+
+#steps p.active {
+    font-weight: bold;
+}
+
+#steps p.past {
+    color: #aaa;
+}
+
+/*
+    p5Canvas
+*/
+#sketch-holder {
+    display: inline-block;
+    margin: 10px 50%;
+    transform-origin: top center;
+    transform: translateX(-50%) scale(0.5);
+    box-shadow: 10px 10px 30px #ccc;
+}
+
+/*
+    posterController
+*/
+.posterController {
+    position: relative;
+}
+
+.posterController div {
+    display: none;
+}
+
+.posterController div.active, .showPosters {
+    display: inline-block;
+    position: absolute;
+    top: 470px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.posterController div.active {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.posterController a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.posterController a:hover {
+    color: #888;
+}
+
+.posterController div a {
+    margin: 0px 10px;
+}
+
+.posterController a.active {
+    color: #444;
+    border-bottom: 2px solid #444;
+    cursor: default;
+}
+
+.selectPoster_validate {
+    font-weight: bold;
+}

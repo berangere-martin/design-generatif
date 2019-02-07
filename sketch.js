@@ -98,7 +98,8 @@ function setup() {
 
     let canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent('sketch-holder');  
-    
+    document.querySelector("#sketch-holder").style.height = canvasHeight + "px";
+
     background(bgColor);
 
     console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
@@ -107,8 +108,6 @@ function setup() {
 // function de p5.js permettant de faire une loop (appele 60 fois par seconde)
 function draw() {
     angleMode(DEGREES);
-
-    background(whiteColor);
 
     switch (currentAffiche) {
         case 1:
@@ -127,10 +126,12 @@ function draw() {
 }
 
 function drawAffiche1() {
-    drawLogo(width/2-150, height/2-150, 1, 0, true);
+    background(whiteColor);
+    drawLogo(width/4-150, height/4-150, 2, 0, false);
 }
 
 function drawAffiche2() {
+    background(whiteColor);
     for (let i = 0; i < 4; i++) {
         let y = 400 + 320 * i;
         drawLogo(65, y, 0.57, i);
@@ -165,6 +166,7 @@ function drawAffiche2() {
 }
 
 function drawAffiche3() {
+    background(whiteColor);
     drawLogo(70, 300, 3, 1, false, 50);
     drawLogo(70, -20, 3, 1, false, 50);
 
@@ -317,15 +319,15 @@ buttonShowPosters.addEventListener('click', function(e){
 selectPoster_1.addEventListener('click', function (e) {
     e.preventDefault();
     currentAffiche = 2;
-    selectPoster_1.classList.toggle('active');
-    selectPoster_2.classList.toggle('active');
+    selectPoster_1.classList.add('active');
+    selectPoster_2.classList.remove('active');
 });
 
 selectPoster_2.addEventListener('click', function (e) {
     e.preventDefault();
     currentAffiche = 3;
-    selectPoster_1.classList.toggle('active');
-    selectPoster_2.classList.toggle('active');
+    selectPoster_1.classList.remove('active');
+    selectPoster_2.classList.add('active');
 });
 
 selectPoster_validate.addEventListener('click', function (e) {

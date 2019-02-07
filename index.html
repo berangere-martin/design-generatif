@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Design génératif</title>
-    <script src="assets/js/p5.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="./assets/css/initialiser.css" rel="stylesheet" /> 
+    <link href="./assets/css/style.css" rel="stylesheet" /> 
 </head>
 <body>
 
@@ -12,24 +14,23 @@
         <p>2. Je crée mon affiche</p>
         <p>3. Je valide mes choix</p>
     </div>
-    
-    <section>
+
+    <div class="posterController">
         <div id="sketch-holder" class="scale"></div>
         <a href="#" class="showPosters">Créer mon affiche</a>
-    </section>
 
-    <div class="selectPoster">
-        <a href="#" class="selectPoster_1 active">Poster 1</a><br>
-        <a href="#" class="selectPoster_2">Poster 2</a><br>
-        <a href="#" class="selectPoster_validate">Valider mon choix</a>
-    </div>
+        <div class="selectPoster">
+            <a href="#" class="selectPoster_1 active">Poster 1</a><br>
+            <a href="#" class="selectPoster_2">Poster 2</a><br>
+            <a href="#" class="selectPoster_validate">Valider mon choix</a>
+        </div>
 
-    <div class="getPoster">
-        <a href="#" class="getMyPoster">Telecharger mon poster</a>
+        <div class="getPoster">
+            <a href="#" class="getMyPoster">Telecharger mon poster</a>
+        </div>
     </div>
     
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" /> 
+    <script src="assets/js/p5.min.js"></script>
 
     <script src="sketch.js"></script>
     <script src="assets/js/dat.min.js"></script>
