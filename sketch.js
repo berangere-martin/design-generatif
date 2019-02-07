@@ -37,8 +37,8 @@ let getMyPoster = document.querySelector('.getMyPoster');
 
 // Function pour precharger l'image
 function preload() {
-    // webImage = loadImage("http://i.rlws.fr/mask.png");
-    // logo = loadImage("http://i.rlws.fr/usm.png");
+    //webImage = loadImage("http://i.rlws.fr/mask.png");
+    //logo = loadImage("http://i.rlws.fr/usm.png");
     webImage = loadImage("./assets/image/mask.png");
     logo = loadImage("./assets/image/usm_logo.png");
 }
@@ -104,7 +104,7 @@ function setup() {
 
     background(bgColor);
 
-    console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
+    //console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
 }
 
 // function de p5.js permettant de faire une loop (appele 60 fois par seconde)
