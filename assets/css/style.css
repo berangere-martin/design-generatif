@@ -46,6 +46,15 @@ body{
     box-shadow: 10px 10px 30px #ccc;
 }
 
+#sketch-holder.activated {
+    height: 596px!important;
+    border-radius: 500px;
+    overflow: hidden;
+}
+
+#sketch-holder.activated #defaultCanvas0 {
+    transform: translateY(-15%);
+}
 /*
     posterController
 */
@@ -100,6 +109,11 @@ body{
     justify-content: center;
     align-items: center;
     width: 100vw;
+    visibility: hidden;
+}
+
+.posterController .selectPoster.active {
+    visibility: visible;
 }
 
 .posterController div a {

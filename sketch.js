@@ -37,10 +37,10 @@ let getMyPoster = document.querySelector('.getMyPoster');
 
 // Function pour precharger l'image
 function preload() {
-    //webImage = loadImage("http://i.rlws.fr/mask.png");
-    //logo = loadImage("http://i.rlws.fr/usm.png");
-    webImage = loadImage("./assets/image/mask.png");
-    logo = loadImage("./assets/image/usm_logo.png");
+    webImage = loadImage("http://i.rlws.fr/mask.png");
+    logo = loadImage("http://i.rlws.fr/usm.png");
+    // webImage = loadImage("./assets/image/mask.png");
+    // logo = loadImage("./assets/image/usm_logo.png");
 }
 
 function setPalletteColor() {
@@ -129,7 +129,7 @@ function draw() {
 
 function drawAffiche1() {
     background(whiteColor);
-    drawLogo(width/4-150, height/4-150, 2, 0, false);
+    drawLogo(width/4-150, height/4-150, 2, 0, true);
 }
 
 function drawAffiche2() {
@@ -309,6 +309,7 @@ function keyTyped() {
 
 buttonShowPosters.addEventListener('click', function(e){
     e.preventDefault();
+    document.querySelector("#sketch-holder").classList.remove("activated");
     steps.children[0].classList.remove('active');
     steps.children[0].classList.add('past');
     steps.children[1].classList.add('active');
