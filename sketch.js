@@ -169,8 +169,8 @@ function drawAffiche2() {
 
 function drawAffiche3() {
     background(whiteColor);
-    drawLogo(70, 300, 3, 1, false, 50);
-    drawLogo(70, -20, 3, 1, false, 50);
+    drawLogo(90, 300, 2.5, 1, false, 50);
+    drawLogo(90, -20, 2.5, 1, false, 50);
 
     drawLogo(4800, 100, 0.1, 0);
     image(logo, 515, 10);
