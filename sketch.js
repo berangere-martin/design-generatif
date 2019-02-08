@@ -33,7 +33,12 @@ let selectPoster_1 = document.querySelector('.selectPoster_1');
 let selectPoster_2 = document.querySelector('.selectPoster_2');  
 let selectPoster_validate = document.querySelector('.selectPoster_validate');  
 let getPoster = document.querySelector('.getPoster');  
-let getMyPoster = document.querySelector('.getMyPoster');  
+let getMyPoster = document.querySelector('.getMyPoster'); 
+let goBack = document.querySelector('.goBack'); 
+
+
+let dateUsual;
+let timeStampLength;
 
 // Function pour precharger l'image
 function preload() {
@@ -104,7 +109,9 @@ function setup() {
 
     background(bgColor);
 
-    //console.log('longueur du tableau colorArray ' + Math.round(colorArray.length));
+    let currentDate = new Date(timeStamp * 1000);
+    dateUsual = currentDate.getDay() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear() + " " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+    timeStampLength = width-toString(timeStamp).length-20;
 }
 
 // function de p5.js permettant de faire une loop (appele 60 fois par seconde)
@@ -140,10 +147,6 @@ function drawAffiche2() {
         drawLogo(385, y, 0.57, i);
         drawLogo(705, y, 0.57, i);
     }
-
-    let currentDate = new Date(timeStamp * 1000);
-    let dateUsual = currentDate.getDay() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear() + " " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
-    let timeStampLength = width-toString(timeStamp).length-20;
     
     drawLogo(4800, 1500, 0.1, 0);
 
@@ -172,8 +175,8 @@ function drawAffiche3() {
     drawLogo(90, 300, 2.5, 1, false, 50);
     drawLogo(90, -20, 2.5, 1, false, 50);
 
-    drawLogo(4800, 100, 0.1, 0);
-    image(logo, 515, 10);
+    drawLogo(4800, 500, 0.1, 0);
+    image(logo, 515, 50);
 
     push()
 
@@ -191,6 +194,10 @@ function drawAffiche3() {
     text('Swiss Quality', 330, 160);
 
     pop();
+
+    textSize(10);
+    text(dateUsual, 20, 20);
+    text(timeStamp, width - 90, 20);
 }
 
 function drawLogo (start_X, start_Y, size, rotated, isCercle=true, rotatedTo=180) {
@@ -344,4 +351,13 @@ selectPoster_validate.addEventListener('click', function (e) {
 
 getMyPoster.addEventListener('click', function (e) {
     saveCanvas('USM_'+timeStamp, 'jpg');
+});
+
+goBack.addEventListener("click", function (e) {
+    e.preventDefault();
+    steps.children[2].classList.remove('active');
+    steps.children[1].classList.remove('past');
+    steps.children[1].classList.add('active');
+    selectPoster.classList.add('active');
+    getPoster.classList.remove('active');
 })

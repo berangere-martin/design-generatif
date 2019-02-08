@@ -50,6 +50,7 @@ body{
     height: 596px!important;
     border-radius: 500px;
     overflow: hidden;
+    margin-top: 50px;
 }
 
 #sketch-holder.activated #defaultCanvas0 {
@@ -103,7 +104,7 @@ body{
     font-weight: 500;
 }
 
-.posterController .selectPoster{
+.posterController .selectPoster, .getPoster{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,7 +113,7 @@ body{
     visibility: hidden;
 }
 
-.posterController .selectPoster.active {
+.posterController .selectPoster.active, .getPoster.active {
     visibility: visible;
 }
 
