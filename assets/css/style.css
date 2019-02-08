@@ -2,9 +2,10 @@ body{
     font-family: 'Helvetica', sans-serif;
     color: rgb(36, 36, 36); 
     overflow: hidden;
-    background-image: linear-gradient(135deg, #F5F7FA, #C3CFE2);
+    background-image: linear-gradient(155deg, #F5F7FA, #C3CFE2);
     background-repeat: no-repeat;
     height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 
 /*
@@ -96,11 +97,12 @@ body{
     text-transform: uppercase;
     z-index: 4;
     margin-top: -20px;
+    transition: all .3s;
+    letter-spacing: 1px;
 }
 
 .posterController a:hover {
-    color: #0f6bff;
-    font-weight: 500;
+    box-shadow: 0 1px 15px 0 rgb(255, 255, 255);
 }
 
 .posterController .selectPoster{
